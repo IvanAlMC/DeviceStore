@@ -1,0 +1,75 @@
+
+type Query{
+
+    #ApplianceType
+    findApplianceTypeById(applianceTypeId: String): ApplianceType,
+    findAllApplianceTypes: [ApplianceType]
+
+    #ElectronicDevices
+    findElectronicDeviceById(electronicDeviceId: String): ElectronicDevice
+    findAllElectronicDevices: [ElectronicDevice]
+
+    #Factory}
+    findFactoryById(factoryId: String): Factory
+    findAllFactories: [Factory]
+
+}
+
+
+type Mutation{
+    #ApplianceType
+    createApplianceType(inputApplianceType: InputApplianceType) : ApplianceType,
+    deleteApplianceTypeById(applianceTypeId: String): String
+    updateApplianceType(applianceTypeId: String, inputApplianceType: InputApplianceType): ApplianceType
+
+    #ElectronicDevice
+    createElectronicDevice(inputElectronicDevice: InputElectronicDevice): ElectronicDevice,
+    deleteElectronicDeviceById(electronicDeviceId: String): String,
+    updateElectronicDevice(electronicDeviceId: String, inputElectronicDevice: InputElectronicDevice): ElectronicDevice
+
+    #Factory
+    createFactory(inputFactory: InputFactory): Factory,
+    deleteFactoryById(factoryId: String): String,
+    updateFactory(factoryId: String, inputFactory: InputFactory): Factory
+}
+
+
+type ApplianceType{
+    id: ID,
+    superType: ApplianceType,
+    name: String,
+    characteristic: String,
+}
+
+type ElectronicDevice{
+    id: ID,
+    name: String,
+    description: String,
+    applianceType: ApplianceType
+}
+
+type Factory{
+    id: ID,
+    rif: String,
+    name: String,
+    taxDomicile: String
+}
+
+
+input InputApplianceType{
+    idSupType: String,
+    name: String!
+    characteristic: String!
+}
+
+input InputElectronicDevice{
+    idType: String!
+    name: String!
+    description: String!
+}
+
+input InputFactory{
+    rif: String!
+    name: String!
+    taxDomicile: String!
+}
