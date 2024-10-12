@@ -3,9 +3,9 @@
 /* Schema name:    Devices Store                                */
 /*==============================================================*/
 
-CREATE DATABASE factory;
+CREATE DATABASE device_store;
 
-USE factory;
+USE device_store;
 
 /*==============================================================*/
 /* Table: APPLIANCE_TYPES                                       */
