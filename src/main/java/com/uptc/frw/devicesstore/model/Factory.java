@@ -21,6 +21,6 @@ public class Factory {
     @Column(name = "FACTORY_TAX_DOM")
     private String taxDomicile;
 
-    @OneToMany(mappedBy = "detailComponent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
+    @OneToMany(mappedBy = "factory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
     private List<DetailComponent> details;
 }
