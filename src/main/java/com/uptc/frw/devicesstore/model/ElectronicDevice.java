@@ -25,6 +25,6 @@ public class ElectronicDevice {
     @JoinColumn(name = "TYPE_ID")
     private ApplianceType applianceType;
 
-    @OneToMany(mappedBy = "detailComponent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
+    @OneToMany(mappedBy = "electronicDevice", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
     private List<DetailComponent> details;
 }
