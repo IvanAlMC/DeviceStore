@@ -3,6 +3,8 @@ package com.uptc.frw.devicesstore.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "ELECTRONIC_DEVICES")
@@ -22,4 +24,7 @@ public class ElectronicDevice {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity =  ApplianceType.class)
     @JoinColumn(name = "TYPE_ID")
     private ApplianceType applianceType;
+
+    @OneToMany(mappedBy = "detailComponent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
+    private List<DetailComponent> details;
 }
