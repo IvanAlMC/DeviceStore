@@ -44,7 +44,7 @@ public class GraphQLFactoryController {
     @MutationMapping(name = "deleteFactoryById")
     public String deleteFactoryByID(@Argument(name = "factoryId") String id) {
         factoryService.deleteFactory(Integer.parseInt(id));
-        return "La fabrica con id: " + id + " ha sido eliminada";
+        return "The factory with id: " + id + ", wsa deleted";
     }
 
 
