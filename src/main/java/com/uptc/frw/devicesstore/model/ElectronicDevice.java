@@ -27,4 +27,7 @@ public class ElectronicDevice {
 
     @OneToMany(mappedBy = "electronicDevice", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
     private List<DetailComponent> details;
+
+    @OneToMany(mappedBy = "electronicDevice",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = Repair.class)
+    private List<Repair> repairs;
 }
