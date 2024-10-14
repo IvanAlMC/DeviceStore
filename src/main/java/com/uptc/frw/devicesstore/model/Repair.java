@@ -14,9 +14,9 @@ public class Repair {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REPAIR_ID")
     private int id;
-    @Column(name = "CUSTOMER_ID")
+    @Column(name = "CUSTOMER_ID", insertable = false, updatable = false)
     private int idCustomer;
-    @Column(name = "DEVICE_ID")
+    @Column(name = "DEVICE_ID", insertable = false, updatable = false)
     private int idDevice;
     @Column(name = "REPAIR_DESCRIPTION")
     private String repairDescription;
@@ -27,7 +27,7 @@ public class Repair {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Repair.class)
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = ElectronicDevice.class)
     @JoinColumn(name = "DEVICE_ID")
     private ElectronicDevice electronicDevice;
 
