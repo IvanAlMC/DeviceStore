@@ -47,7 +47,7 @@ public class GraphQLApplianceTypeController {
     @MutationMapping(name = "deleteApplianceTypeById")
     public String deleteApplianceTypeByID(@Argument(name = "applianceTypeId") String id) {
         applianceTypeService.deleteApplianceType(Integer.parseInt(id));
-        return "El Tipo de aparato con id: " + id + " ha sido eliminado";
+        return "The appliance type with id: " + id + ", was deleted";
     }
 
 
