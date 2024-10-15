@@ -3,6 +3,8 @@ package com.uptc.frw.devicesstore.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "FACTORIES")
@@ -18,4 +20,7 @@ public class Factory {
     private String name;
     @Column(name = "FACTORY_TAX_DOM")
     private String taxDomicile;
+
+    @OneToMany(mappedBy = "factory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
+    private List<DetailComponent> details;
 }
