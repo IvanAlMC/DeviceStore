@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,5 +31,8 @@ public class Repair {
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = ElectronicDevice.class)
     @JoinColumn(name = "DEVICE_ID")
     private ElectronicDevice electronicDevice;
+
+    @OneToMany(mappedBy = "repair",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = Repair.class)
+    private List<ComponentChange> componentsChanges;
 
 }
