@@ -28,22 +28,24 @@ public class GraphQLComponentChangeController {
     //To do
     @MutationMapping(name = "createComponentChange")
     public ComponentChange createComponentChange(@Argument(name = "componentChange") ComponentChange componentChange) {
+        ComponentChange newComp = null;
         if(componentChange != null) {
-            ComponentChange newComp = new ComponentChange();
+            newComp = new ComponentChange();
+            newComp.setId(componentChange.getId());
             newComp.setQuantity(componentChange.getQuantity());
             componentChangeService.createComponentChange(newComp);
-            return newComp;
         }
-        return null;
+        return newComp;
     }
     @MutationMapping(name = "updateComponentChange")
     public ComponentChange updateComponentChange(@Argument(name = "componentChangeId") String id,@Argument(name = "componentChange") ComponentChange componentChange) {
+        ComponentChange newComp = null;
         if(componentChange != null) {
-            ComponentChange newComp = new ComponentChange();
+            newComp = componentChangeService.findComponentChangeById(Integer.parseInt(id));
             newComp.setQuantity(componentChange.getQuantity());
-            return newComp;
+            componentChangeService.createComponentChange(newComp);
         }
-        return null;
+        return newComp;
     }
     @MutationMapping(name = "deleteComponentChange")
     public String deleteComponentChange(@Argument(name = "componentChangeId") String id) {
