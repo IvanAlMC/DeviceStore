@@ -12,11 +12,11 @@ public class DetailComponent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DETAILS_ID")
     private int id;
-    @Column(name = "COMPONENT_ID")
+    @Column(name = "COMPONENT_ID", insertable = false, updatable = false)
     private int componentId;
-    @Column(name = "DEVICE_ID")
+    @Column(name = "DEVICE_ID", insertable = false, updatable = false)
     private int deviceId;
-    @Column(name = "FACTORY_ID")
+    @Column(name = "FACTORY_ID", insertable = false, updatable = false)
     private int factoryId;
     @Column(name = "COMPONENT_QUANTITY")
     private int quantity;
