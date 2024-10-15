@@ -19,7 +19,7 @@ public class Component {
     @Column(name = "COMPONENT_SPECS")
     private String specsComponent;
 
-    @OneToMany(mappedBy = "component",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = Component.class)
+    @OneToMany(mappedBy = "component",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = ComponentChange.class)
     private List<ComponentChange> componentsChanges;
 
 }

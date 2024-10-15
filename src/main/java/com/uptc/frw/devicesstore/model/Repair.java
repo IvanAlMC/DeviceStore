@@ -32,7 +32,7 @@ public class Repair {
     @JoinColumn(name = "DEVICE_ID")
     private ElectronicDevice electronicDevice;
 
-    @OneToMany(mappedBy = "repair",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = Repair.class)
+    @OneToMany(mappedBy = "repair",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = ComponentChange.class)
     private List<ComponentChange> componentsChanges;
 
 }

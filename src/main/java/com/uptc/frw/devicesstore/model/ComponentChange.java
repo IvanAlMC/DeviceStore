@@ -1,11 +1,10 @@
 package com.uptc.frw.devicesstore.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 import lombok.Data;
 
 @Data
-@Enabled
+@Entity
 @Table(name = "COMPONENTS_CHANGE")
 public class ComponentChange {
     @Id
