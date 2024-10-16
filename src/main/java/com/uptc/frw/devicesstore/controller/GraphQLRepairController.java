@@ -13,6 +13,10 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -37,12 +41,14 @@ public class GraphQLRepairController {
     }
 
     @MutationMapping(name = "createRepair")
-    public Repair createRepair(@Argument(name = "inputRepair") InputRepair inputRepair) {
+    public Repair createRepair(@Argument(name = "inputRepair") InputRepair inputRepair) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = formatter.parse(inputRepair.getRepairDate());
         Customer customer = customerService.findCustomerById(inputRepair.getIdCustomer());
         ElectronicDevice electronicDevice = electronicDeviceService.findElectronicDeviceById(inputRepair.getIdDevice());
 
         Repair repair = new Repair();
-        repair.setRepairDate(inputRepair.getRepairDate());
+        repair.setRepairDate(date);
         repair.setRepairDescription(inputRepair.getRepairDescription());
         repair.setCustomer(customer);
         repair.setElectronicDevice(electronicDevice);
@@ -61,8 +67,9 @@ public class GraphQLRepairController {
     }
 
     @MutationMapping(name = "updateRepair")
-    public Repair updateRepair(@Argument(name = "inputRepair") InputRepair inputRepair, @Argument(name = "repairId") String repairId) {
-
+    public Repair updateRepair(@Argument(name = "inputRepair") InputRepair inputRepair, @Argument(name = "repairId") String repairId) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = formatter.parse(inputRepair.getRepairDate());
 
         if (repairId == null||repairId.isBlank()) {
             return null;
@@ -77,7 +84,7 @@ public class GraphQLRepairController {
         if (customer == null || electronicDevice == null) {
             return null;  // Si alguno de los dos no existe, no se actualiza la reparación
         }
-        repair.setRepairDate(inputRepair.getRepairDate());
+        repair.setRepairDate(date);
         repair.setRepairDescription(inputRepair.getRepairDescription());
         repair.setCustomer(customer);
         repair.setElectronicDevice(electronicDevice);

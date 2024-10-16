@@ -18,7 +18,7 @@ type Query{
     findAllCustomers:[Customer]
 
     #Repair
-    findRepairById(repairId:String) Repair
+    findRepairById(repairId:String): Repair
     findAllRepairs:[Repair]
 
 
@@ -86,9 +86,9 @@ type Customer{
 type Repair{
      id:ID,
      repairDescription:String,
-     repairDate: Date,
-     Customer: customer,
-     ElectronicDevice electronicDevice
+     repairDate: String,
+     customer: Customer,
+     electronicDevice: ElectronicDevice
 
 }
 
@@ -126,5 +126,7 @@ input InputCustomer{
 
 input InputRepair{
      repairDescription:String!
-     repairDate: Date!
+     repairDate: String!
+     idDevice: String!
+     idCustomer: String!
 }

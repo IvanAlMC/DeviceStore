@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class CustomerService implements com.uptc.frw.devicesstore.service.ICustomerService{
+public class CustomerService implements com.uptc.frw.devicesstore.service.ICustomerService{
 
 
     @Autowired
