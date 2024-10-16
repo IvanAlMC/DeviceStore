@@ -10,5 +10,5 @@ public class InputRepair {
     private int idCustomer;
     private int idDevice;
     private String repairDescription;
-    private Date repairDate;
+    private String repairDate;
 }
