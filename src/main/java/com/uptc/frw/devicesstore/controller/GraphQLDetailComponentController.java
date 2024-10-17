@@ -1,6 +1,7 @@
 package com.uptc.frw.devicesstore.controller;
 
 import com.uptc.frw.devicesstore.model.DetailComponent;
+import com.uptc.frw.devicesstore.service.implementation.ComponentService;
 import com.uptc.frw.devicesstore.service.implementation.DetailComponentService;
 import com.uptc.frw.devicesstore.service.implementation.ElectronicDeviceService;
 import com.uptc.frw.devicesstore.service.implementation.FactoryService;
@@ -16,11 +17,12 @@ import java.util.List;
 public class GraphQLDetailComponentController {
     @Autowired
     private DetailComponentService detailComponentService;
-
     @Autowired
     private ElectronicDeviceService electronicDeviceService;
     @Autowired
     private FactoryService factoryService;
+    @Autowired
+    private ComponentService componentService;
 
     @QueryMapping(name = "findDetailComponentById")
     public DetailComponent findDetailComponentById(@Argument(name = "detailComponentId") String id){
@@ -36,8 +38,14 @@ public class GraphQLDetailComponentController {
         if (detailComponent != null){
             newDC = new DetailComponent();
             newDC.setId(detailComponent.getId());
+            newDC.setComponentId(detailComponent.getComponentId());
+            newDC.setComponent(componentService.findComponentById(detailComponent.getComponentId()));
+            newDC.setDeviceId(detailComponent.getDeviceId());
             newDC.setElectronicDevice(electronicDeviceService.findElectronicDeviceById(detailComponent.getDeviceId()));
+            newDC.setFactoryId(detailComponent.getFactoryId());
             newDC.setFactory(factoryService.findFactoryById(detailComponent.getFactoryId()));
+            newDC.setQuantity(detailComponent.getQuantity());
+            newDC.setPrice(detailComponent.getPrice());
             detailComponentService.createDetailComponent(newDC);
         }
         return newDC;
@@ -47,6 +55,12 @@ public class GraphQLDetailComponentController {
         DetailComponent newDC = null;
         if (detailComponent != null){
             newDC = detailComponentService.findDetailComponentById(Integer.parseInt(id));
+            newDC.setComponent(componentService.findComponentById(detailComponent.getComponentId()));
+            newDC.setComponentId(detailComponent.getComponentId());
+            newDC.setElectronicDevice(electronicDeviceService.findElectronicDeviceById(detailComponent.getDeviceId()));
+            newDC.setDeviceId(detailComponent.getDeviceId());
+            newDC.setFactoryId(detailComponent.getFactoryId());
+            newDC.setFactory(factoryService.findFactoryById(detailComponent.getFactoryId()));
             newDC.setQuantity(detailComponent.getQuantity());
             newDC.setPrice(detailComponent.getPrice());
             detailComponentService.createDetailComponent(newDC);

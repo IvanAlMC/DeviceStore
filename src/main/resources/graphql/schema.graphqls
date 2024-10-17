@@ -21,6 +21,9 @@ type Query{
     findRepairById(repairId:String): Repair
     findAllRepairs:[Repair]
 
+    #ComponentChange
+    findComponentChangeById(componentChangeId: String): ComponentChange
+    findAllComponentChanges: [ComponentChange]
 
 }
 
@@ -50,6 +53,11 @@ type Mutation{
     createRepair(inputRepair:InputRepair):Repair,
     deleteRepairId(repairId:String):String,
     updateRepair(inputRepair:InputRepair,repairId:String):Repair
+
+    #ComponentChange
+    createComponentChange(inputComponentChange:InputComponentChange):ComponentChange,
+    updateComponentChange(componentChangeId:String,inputComponentChange:InputComponentChange):ComponentChange,
+    deleteComponentChange(componentChangeId:String):String
 }
 
 
@@ -98,6 +106,13 @@ type Component{
     specsComponent:String
 
 }
+type ComponentChange{
+    id: ID,
+    repair: Repair,
+    component: Component,
+    quantity: String
+}
+
 input InputApplianceType{
     idSupType: String,
     name: String!
@@ -129,4 +144,10 @@ input InputRepair{
      repairDate: String!
      idDevice: String!
      idCustomer: String!
+}
+
+input InputComponentChange{
+     repairId:String!
+     componentId: String!
+     quantity: String!
 }

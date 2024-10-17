@@ -32,7 +32,7 @@ public class GraphQLComponentChangeController {
         return componentChangeService.findAllComponentChanges();
     }
     @MutationMapping(name = "createComponentChange")
-    public ComponentChange createComponentChange(@Argument(name = "componentChange") ComponentChange componentChange) {
+    public ComponentChange createComponentChange(@Argument(name = "inputComponentChange") ComponentChange componentChange) {
         ComponentChange newComp = null;
         if(componentChange != null) {
             newComp = new ComponentChange();
@@ -47,7 +47,7 @@ public class GraphQLComponentChangeController {
         return newComp;
     }
     @MutationMapping(name = "updateComponentChange")
-    public ComponentChange updateComponentChange(@Argument(name = "componentChangeId") String id,@Argument(name = "componentChange") ComponentChange componentChange) {
+    public ComponentChange updateComponentChange(@Argument(name = "componentChangeId") String id,@Argument(name = "inputComponentChange") ComponentChange componentChange) {
         ComponentChange newComp = null;
         if(componentChange != null) {
             newComp = componentChangeService.findComponentChangeById(Integer.parseInt(id));
