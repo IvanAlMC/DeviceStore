@@ -2,6 +2,8 @@ package com.uptc.frw.devicesstore.controller;
 
 import com.uptc.frw.devicesstore.model.ComponentChange;
 import com.uptc.frw.devicesstore.service.implementation.ComponentChangeService;
+import com.uptc.frw.devicesstore.service.implementation.ComponentService;
+import com.uptc.frw.devicesstore.service.implementation.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -14,6 +16,10 @@ import java.util.List;
 public class GraphQLComponentChangeController {
     @Autowired
     private ComponentChangeService componentChangeService;
+    @Autowired
+    private RepairService repairService;
+    @Autowired
+    private ComponentService componentService;
 
 
     @QueryMapping(name = "findComponentChangeById")
@@ -25,13 +31,16 @@ public class GraphQLComponentChangeController {
     public List<ComponentChange> findAllComponentChanges() {
         return componentChangeService.findAllComponentChanges();
     }
-    //To do
     @MutationMapping(name = "createComponentChange")
     public ComponentChange createComponentChange(@Argument(name = "componentChange") ComponentChange componentChange) {
         ComponentChange newComp = null;
         if(componentChange != null) {
             newComp = new ComponentChange();
             newComp.setId(componentChange.getId());
+            newComp.setComponent(componentService.findComponentById(componentChange.getComponentId()));
+            newComp.setComponentId(componentChange.getComponentId());
+            newComp.setRepair(repairService.findRepairById(componentChange.getRepairId()));
+            newComp.setRepairId(componentChange.getRepairId());
             newComp.setQuantity(componentChange.getQuantity());
             componentChangeService.createComponentChange(newComp);
         }
@@ -42,6 +51,10 @@ public class GraphQLComponentChangeController {
         ComponentChange newComp = null;
         if(componentChange != null) {
             newComp = componentChangeService.findComponentChangeById(Integer.parseInt(id));
+            newComp.setComponentId(componentChange.getComponentId());
+            newComp.setComponent(componentService.findComponentById(componentChange.getComponentId()));
+            newComp.setRepairId(componentChange.getRepairId());
+            newComp.setRepair(repairService.findRepairById(componentChange.getRepairId()));
             newComp.setQuantity(componentChange.getQuantity());
             componentChangeService.createComponentChange(newComp);
         }
