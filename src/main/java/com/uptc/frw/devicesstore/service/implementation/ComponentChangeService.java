@@ -14,25 +14,25 @@ public class ComponentChangeService implements com.uptc.frw.devicesstore.service
     @Autowired
     private ComponentChangeRepository componentChangeRepository;
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public ComponentChange findComponentChangeById(int componentId) {
         return componentChangeRepository.findById(componentId).orElseThrow();
     }
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public List<ComponentChange> findAllComponentChanges() {
         return (List<ComponentChange>)componentChangeRepository.findAll();
     }
-    @Transactional
     @Override
+    @Transactional
     public void createComponentChange(ComponentChange componentChange) {
         componentChangeRepository.save(componentChange);
     }
-    @Transactional
     @Override
+    @Transactional
     public void deleteComponentChange(int componentId) {
-        componentChangeRepository.deleteById(componentId);
+        componentChangeRepository.deleteById(findComponentChangeById(componentId).getId());
     }
 }
 

@@ -17,6 +17,10 @@ import java.util.List;
 public class GraphQLComponentChangeController {
     @Autowired
     private ComponentChangeService componentChangeService;
+    @Autowired
+    private RepairService repairService;
+    @Autowired
+    private ComponentService componentService;
 
 
     @QueryMapping(name = "findComponentChangeById")
@@ -28,25 +32,34 @@ public class GraphQLComponentChangeController {
     public List<ComponentChange> findAllComponentChanges() {
         return componentChangeService.findAllComponentChanges();
     }
-    //To do
     @MutationMapping(name = "createComponentChange")
-    public ComponentChange createComponentChange(@Argument(name = "componentChange") ComponentChange componentChange) {
+    public ComponentChange createComponentChange(@Argument(name = "inputComponentChange") ComponentChange componentChange) {
+        ComponentChange newComp = null;
         if(componentChange != null) {
-            ComponentChange newComp = new ComponentChange();
+            newComp = new ComponentChange();
+            newComp.setId(componentChange.getId());
+            newComp.setComponent(componentService.findComponentById(componentChange.getComponentId()));
+            newComp.setComponentId(componentChange.getComponentId());
+            newComp.setRepair(repairService.findRepairById(componentChange.getRepairId()));
+            newComp.setRepairId(componentChange.getRepairId());
             newComp.setQuantity(componentChange.getQuantity());
             componentChangeService.createComponentChange(newComp);
-            return newComp;
         }
-        return null;
+        return newComp;
     }
     @MutationMapping(name = "updateComponentChange")
-    public ComponentChange updateComponentChange(@Argument(name = "componentChangeId") String id,@Argument(name = "componentChange") ComponentChange componentChange) {
+    public ComponentChange updateComponentChange(@Argument(name = "componentChangeId") String id,@Argument(name = "inputComponentChange") ComponentChange componentChange) {
+        ComponentChange newComp = null;
         if(componentChange != null) {
-            ComponentChange newComp = new ComponentChange();
+            newComp = componentChangeService.findComponentChangeById(Integer.parseInt(id));
+            newComp.setComponentId(componentChange.getComponentId());
+            newComp.setComponent(componentService.findComponentById(componentChange.getComponentId()));
+            newComp.setRepairId(componentChange.getRepairId());
+            newComp.setRepair(repairService.findRepairById(componentChange.getRepairId()));
             newComp.setQuantity(componentChange.getQuantity());
-            return newComp;
+            componentChangeService.createComponentChange(newComp);
         }
-        return null;
+        return newComp;
     }
     @MutationMapping(name = "deleteComponentChange")
     public String deleteComponentChange(@Argument(name = "componentChangeId") String id) {

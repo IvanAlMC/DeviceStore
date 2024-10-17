@@ -22,4 +22,7 @@ public class Component {
     @OneToMany(mappedBy = "component",fetch = FetchType.LAZY, cascade = CascadeType.ALL,targetEntity = ComponentChange.class)
     private List<ComponentChange> componentsChanges;
 
+    @OneToMany(mappedBy = "component", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = DetailComponent.class)
+    private List<DetailComponent> details;
+
 }

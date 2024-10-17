@@ -21,10 +21,17 @@ type Query{
     findRepairById(repairId:String): Repair
     findAllRepairs:[Repair]
 
+    #ComponentChange
+    findComponentChangeById(componentChangeId: String): ComponentChange
+    findAllComponentChanges: [ComponentChange]
+
+    #DetailComponent
+    findDetailComponentById(detailComponentId: String): DetailComponent
+    findAllDetailComponent: [DetailComponent]
+
     #Component
     findComponentById(componentId:String): Component
     findAllComponents:[Component]
-
 
 }
 
@@ -54,6 +61,16 @@ type Mutation{
     createRepair(inputRepair:InputRepair):Repair,
     deleteRepairId(repairId:String):String,
     updateRepair(inputRepair:InputRepair,repairId:String):Repair
+
+    #ComponentChange
+    createComponentChange(inputComponentChange:InputComponentChange):ComponentChange,
+    updateComponentChange(componentChangeId:String,inputComponentChange:InputComponentChange):ComponentChange,
+    deleteComponentChange(componentChangeId:String):String
+
+    #ComponentChange
+    createDetailComponent(inputDetailComponent:InputDetailComponent):DetailComponent,
+    updateDetailComponent(detailComponentId:String,inputDetailComponent:InputDetailComponent):DetailComponent,
+    deleteDetailComponent(detailComponentId:String):String
 
     #Component
     createComponent(inputComponent:InputComponent):Component,
@@ -107,6 +124,20 @@ type Component{
     specsComponent:String
 
 }
+type ComponentChange{
+    id: ID,
+    repair: Repair,
+    component: Component,
+    quantity: String
+}
+type DetailComponent{
+    id: ID,
+    component: Component,
+    electronicDevice: ElectronicDevice,
+    factory: Factory,
+    quantity: String,
+    price: String
+}
 input InputApplianceType{
     idSupType: String,
     name: String!
@@ -139,6 +170,19 @@ input InputRepair{
      idDevice: String!
      idCustomer: String!
 }
+
+input InputComponentChange{
+     repairId:String!
+     componentId: String!
+     quantity: String!
+}
+
+input InputDetailComponent{
+     componentId:String!
+     deviceId: String!
+     factoryId: String!
+     quantity: String!
+     price: String!
 
 input InputComponent{
     nameComponent: String!
