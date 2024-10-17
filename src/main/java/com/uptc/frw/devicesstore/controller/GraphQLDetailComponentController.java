@@ -33,7 +33,7 @@ public class GraphQLDetailComponentController {
         return detailComponentService.findAllDetailComponent();
     }
     @MutationMapping(name = "createDetailComponent")
-    public DetailComponent createDetailComponent(@Argument(name = "detailComponent") DetailComponent detailComponent){
+    public DetailComponent createDetailComponent(@Argument(name = "inputDetailComponent") DetailComponent detailComponent){
         DetailComponent newDC = null;
         if (detailComponent != null){
             newDC = new DetailComponent();
@@ -51,7 +51,7 @@ public class GraphQLDetailComponentController {
         return newDC;
     }
     @MutationMapping(name = "updateDetailComponent")
-    public DetailComponent updateDetailComponent(@Argument(name = "detailComponentId") String id,@Argument(name = "detailComponent") DetailComponent detailComponent){
+    public DetailComponent updateDetailComponent(@Argument(name = "detailComponentId") String id,@Argument(name = "inputDetailComponent") DetailComponent detailComponent){
         DetailComponent newDC = null;
         if (detailComponent != null){
             newDC = detailComponentService.findDetailComponentById(Integer.parseInt(id));
