@@ -32,7 +32,7 @@ public class ComponentChangeService implements com.uptc.frw.devicesstore.service
     @Override
     @Transactional
     public void deleteComponentChange(int componentId) {
-        componentChangeRepository.deleteById(componentId);
+        componentChangeRepository.deleteById(findComponentChangeById(componentId).getId());
     }
 }
 

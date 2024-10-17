@@ -34,7 +34,7 @@ public class DetailComponentService implements com.uptc.frw.devicesstore.service
     @Override
     @Transactional
     public void deleteDetailComponent(int id) {
-        detailComponentRepository.deleteById(id);
+        detailComponentRepository.deleteById(findDetailComponentById(id).getId());
     }
 
 }
