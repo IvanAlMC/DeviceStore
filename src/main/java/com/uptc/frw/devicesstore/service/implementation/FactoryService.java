@@ -10,13 +10,13 @@ import java.util.List;
 
 @Service
 public class FactoryService implements com.uptc.frw.devicesstore.service.IFactoryService {
-
     @Autowired
     private FactoryRepository factoryRepository;
 
     @Transactional(readOnly = true)
     @Override
     public Factory findFactoryById(int id) {
+
         return factoryRepository.findById(id).orElseThrow();
     }
 

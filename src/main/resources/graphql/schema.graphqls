@@ -9,9 +9,18 @@ type Query{
     findElectronicDeviceById(electronicDeviceId: String): ElectronicDevice
     findAllElectronicDevices: [ElectronicDevice]
 
-    #Factory}
+    #Factory
     findFactoryById(factoryId: String): Factory
     findAllFactories: [Factory]
+
+    #Customer
+    findCustomerById(customerId:String):Customer
+    findAllCustomers:[Customer]
+
+    #Repair
+    findRepairById(repairId:String): Repair
+    findAllRepairs:[Repair]
+
 
 }
 
@@ -31,6 +40,16 @@ type Mutation{
     createFactory(inputFactory: InputFactory): Factory,
     deleteFactoryById(factoryId: String): String,
     updateFactory(factoryId: String, inputFactory: InputFactory): Factory
+
+    #Customer
+    createCustomer(inputCustomer:InputCustomer):Customer,
+    deleteCustomerById(customerId:String):String,
+    updateCustomer(customerId:String,inputCustomer:InputCustomer):Customer
+
+    #Repair
+    createRepair(inputRepair:InputRepair):Repair,
+    deleteRepairId(repairId:String):String,
+    updateRepair(inputRepair:InputRepair,repairId:String):Repair
 }
 
 
@@ -55,7 +74,30 @@ type Factory{
     taxDomicile: String
 }
 
+type Customer{
+    id:ID,
+    nameCustomer: String,
+    codeDocument:String,
+    address:String,
+    phone:String,
+    email:String
+}
 
+type Repair{
+     id:ID,
+     repairDescription:String,
+     repairDate: String,
+     customer: Customer,
+     electronicDevice: ElectronicDevice
+
+}
+
+type Component{
+    id:ID,
+    nameComponent:String,
+    specsComponent:String
+
+}
 input InputApplianceType{
     idSupType: String,
     name: String!
@@ -72,4 +114,19 @@ input InputFactory{
     rif: String!
     name: String!
     taxDomicile: String!
+}
+
+input InputCustomer{
+    nameCustomer: String!
+    codeDocument:String!
+    address:String!
+    phone:String!
+    email:String!
+}
+
+input InputRepair{
+     repairDescription:String!
+     repairDate: String!
+     idDevice: String!
+     idCustomer: String!
 }
