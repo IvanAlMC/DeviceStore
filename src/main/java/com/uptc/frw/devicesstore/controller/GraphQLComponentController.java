@@ -29,7 +29,7 @@ public class GraphQLComponentController {
         return componentService.findAllComponents();
     }
 
-    @QueryMapping(name = "createComponent")
+    @MutationMapping(name = "createComponent")
     public Component createComponent(@Argument(name = "inputComponent") InputComponent inputComponent) {
         Component component = new Component();
         component.setNameComponent(inputComponent.getNameComponent());
