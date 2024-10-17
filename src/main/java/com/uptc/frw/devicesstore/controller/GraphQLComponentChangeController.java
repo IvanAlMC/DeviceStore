@@ -1,7 +1,10 @@
 package com.uptc.frw.devicesstore.controller;
 
+import com.uptc.frw.devicesstore.model.Component;
 import com.uptc.frw.devicesstore.model.ComponentChange;
 import com.uptc.frw.devicesstore.service.implementation.ComponentChangeService;
+import com.uptc.frw.devicesstore.service.implementation.ComponentService;
+import com.uptc.frw.devicesstore.service.implementation.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

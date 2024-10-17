@@ -21,6 +21,10 @@ type Query{
     findRepairById(repairId:String): Repair
     findAllRepairs:[Repair]
 
+    #Component
+    findComponentById : Component
+    findAllComponents: [Component]
+
 
 }
 
@@ -50,6 +54,11 @@ type Mutation{
     createRepair(inputRepair:InputRepair):Repair,
     deleteRepairId(repairId:String):String,
     updateRepair(inputRepair:InputRepair,repairId:String):Repair
+
+    #Component
+    createComponent(inputComponent:InputComponent):Component,
+    deleteComponentById(componentId:String):String,
+    updateComponent(componentId:String,inputComponent: InputComponent):Component
 }
 
 
@@ -129,4 +138,9 @@ input InputRepair{
      repairDate: String!
      idDevice: String!
      idCustomer: String!
+}
+
+input InputComponent{
+    nameComponent: String!
+    specsComponent : String!
 }
