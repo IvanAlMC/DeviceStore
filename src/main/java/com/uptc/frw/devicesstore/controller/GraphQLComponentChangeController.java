@@ -1,5 +1,6 @@
 package com.uptc.frw.devicesstore.controller;
 
+import com.uptc.frw.devicesstore.model.Component;
 import com.uptc.frw.devicesstore.model.ComponentChange;
 import com.uptc.frw.devicesstore.service.implementation.ComponentChangeService;
 import com.uptc.frw.devicesstore.service.implementation.ComponentService;

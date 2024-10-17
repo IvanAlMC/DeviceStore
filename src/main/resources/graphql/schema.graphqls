@@ -29,6 +29,10 @@ type Query{
     findDetailComponentById(detailComponentId: String): DetailComponent
     findAllDetailComponent: [DetailComponent]
 
+    #Component
+    findComponentById(componentId:String): Component
+    findAllComponents:[Component]
+
 }
 
 
@@ -67,6 +71,11 @@ type Mutation{
     createDetailComponent(inputDetailComponent:InputDetailComponent):DetailComponent,
     updateDetailComponent(detailComponentId:String,inputDetailComponent:InputDetailComponent):DetailComponent,
     deleteDetailComponent(detailComponentId:String):String
+
+    #Component
+    createComponent(inputComponent:InputComponent):Component,
+    deleteComponentById(componentId:String):String,
+    updateComponent(componentId:String,inputComponent: InputComponent):Component
 }
 
 
@@ -174,4 +183,8 @@ input InputDetailComponent{
      factoryId: String!
      quantity: String!
      price: String!
+
+input InputComponent{
+    nameComponent: String!
+    specsComponent : String!
 }
