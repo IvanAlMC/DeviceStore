@@ -34,6 +34,6 @@ public class ApplianceTypeService implements com.uptc.frw.devicesstore.service.I
     @Transactional
     @Override
     public void deleteApplianceType(int id) {
-        applianceTypeRepository.deleteById(id);
+        applianceTypeRepository.deleteById(findApplianceTypeById(id).getId());
     }
 }

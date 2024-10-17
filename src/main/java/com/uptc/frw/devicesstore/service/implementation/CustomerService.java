@@ -36,7 +36,7 @@ public class CustomerService implements com.uptc.frw.devicesstore.service.ICusto
     @Transactional
     @Override
     public void deleteCustomer(int id){
-        customerRepository.deleteById(id);
+        customerRepository.deleteById(findCustomerById(id).getId());
     }
 
 }

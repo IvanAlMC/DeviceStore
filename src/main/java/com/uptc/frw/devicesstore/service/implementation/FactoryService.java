@@ -35,6 +35,6 @@ public class FactoryService implements com.uptc.frw.devicesstore.service.IFactor
     @Transactional
     @Override
     public void deleteFactory(int id) {
-        factoryRepository.deleteById(id);
+        factoryRepository.deleteById(findFactoryById(id).getId());
     }
 }

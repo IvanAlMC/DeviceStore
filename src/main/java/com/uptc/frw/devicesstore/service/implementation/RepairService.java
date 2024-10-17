@@ -35,6 +35,6 @@ public class RepairService implements com.uptc.frw.devicesstore.service.IRepairS
     @Transactional
     @Override
     public void deleteRepair(int id) {
-        repairRepository.deleteById(id);
+        repairRepository.deleteById(findRepairById(id).getId());
     }
 }

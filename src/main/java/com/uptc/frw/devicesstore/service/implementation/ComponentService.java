@@ -35,6 +35,6 @@ public class ComponentService implements com.uptc.frw.devicesstore.service.IComp
     @Transactional
     @Override
     public void deleteComponent(int id) {
-        componentRepository.deleteById(id);
+        componentRepository.deleteById(findComponentById(id).getId());
     }
 }

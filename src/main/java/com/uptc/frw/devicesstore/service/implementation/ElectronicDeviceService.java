@@ -35,6 +35,6 @@ public class ElectronicDeviceService implements com.uptc.frw.devicesstore.servic
     @Transactional
     @Override
     public void deleteElectronicDevice(int id) {
-        electronicDeviceRepository.deleteById(id);
+        electronicDeviceRepository.deleteById(findElectronicDeviceById(id).getId());
     }
 }
