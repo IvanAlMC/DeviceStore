@@ -64,6 +64,6 @@ public class GraphQLComponentChangeController {
     @MutationMapping(name = "deleteComponentChange")
     public String deleteComponentChange(@Argument(name = "componentChangeId") String id) {
         componentChangeService.deleteComponentChange(Integer.parseInt(id));
-        return "The component change with id " + id + " was deleted";
+        return "The component change with ID " + id + " was deleted";
     }
 }

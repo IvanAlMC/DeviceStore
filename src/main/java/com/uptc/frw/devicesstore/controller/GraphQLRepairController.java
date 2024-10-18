@@ -63,7 +63,7 @@ public class GraphQLRepairController {
         }
         int repairIdInt = Integer.parseInt(repairId);
         repairService.deleteRepair(repairIdInt);
-        return "Repair ID with ID" + repairIdInt + " was successfully deleted";
+        return "Repair ID with ID " + repairIdInt + " was deleted";
     }
 
     @MutationMapping(name = "updateRepair")

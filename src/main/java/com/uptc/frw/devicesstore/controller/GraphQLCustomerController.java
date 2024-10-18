@@ -50,7 +50,7 @@ public class GraphQLCustomerController {
 
         int customerIdInt = Integer.parseInt(customerId);
         customerService.deleteCustomer(customerIdInt);
-        return "The customer with ID: " + customerIdInt + " was successfully deleted.";
+        return "The customer with ID " + customerIdInt + " was deleted.";
     }
 
     @MutationMapping(name = "updateCustomer")

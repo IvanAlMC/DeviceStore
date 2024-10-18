@@ -49,7 +49,7 @@ public class GraphQLElectronicDeviceController {
     @MutationMapping(name = "deleteElectronicDeviceById")
     public String deleteElectronicDeviceByID(@Argument(name = "electronicDeviceId") String id) {
         electronicDeviceService.deleteElectronicDevice(Integer.parseInt(id));
-        return "The electronic device with id: " + id + ", was deleted";
+        return "The electronic device with ID " + id + " was deleted";
     }
 
 
