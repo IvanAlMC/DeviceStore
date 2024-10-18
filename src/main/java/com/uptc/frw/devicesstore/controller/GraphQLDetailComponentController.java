@@ -69,7 +69,11 @@ public class GraphQLDetailComponentController {
     }
     @MutationMapping(name = "deleteDetailComponent")
     public String deleteDetailComponent(@Argument(name = "detailComponentId") String id){
-        detailComponentService.deleteDetailComponent(Integer.parseInt(id));
-        return "The detail component with ID: " + id + "has been deleted";
+        try {
+            detailComponentService.deleteDetailComponent(Integer.parseInt(id));
+            return "The detail component with ID: " + id + "has been deleted";
+        }catch (Exception e) {
+            return "Error while deleting component";
+        }
     }
 }

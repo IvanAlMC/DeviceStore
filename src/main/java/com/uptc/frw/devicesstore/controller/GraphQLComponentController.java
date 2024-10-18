@@ -40,12 +40,17 @@ public class GraphQLComponentController {
 
     @MutationMapping(name = "deleteComponentById")
     public String deleteComponentById(@Argument(name = "componentId") String componentId) {
-        if (componentId == null || componentId.isBlank()) {
-            return "Component ID is required";
+        try {
+            if (componentId == null || componentId.isBlank()) {
+                return "Component ID is required";
+            }
+            int componentIdInt = Integer.parseInt(componentId);
+            componentService.deleteComponent(componentIdInt);
+            return "The component with ID "+ componentIdInt + " was deleted";
+        }catch (Exception e) {
+            return "Error while deleting component";
         }
-        int componentIdInt = Integer.parseInt(componentId);
-        componentService.deleteComponent(componentIdInt);
-        return "The component with ID "+ componentIdInt + " was deleted";
+
     }
 
     @MutationMapping(name = "updateComponent")

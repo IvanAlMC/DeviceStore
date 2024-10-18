@@ -43,14 +43,17 @@ public class GraphQLCustomerController {
 
     @MutationMapping(name="deleteCustomerById")
     public String deleteCustomerById(@Argument(name = "customerId") String customerId) {
+        try{
+            if (customerId == null || customerId.isBlank()) {
+                return "Customer ID is required.";
+            }
 
-        if (customerId == null || customerId.isBlank()) {
-            return "Customer ID is required.";
+            int customerIdInt = Integer.parseInt(customerId);
+            customerService.deleteCustomer(customerIdInt);
+            return "The customer with ID " + customerIdInt + " was deleted.";
+        }catch (Exception e) {
+            return "Error while deleting component";
         }
-
-        int customerIdInt = Integer.parseInt(customerId);
-        customerService.deleteCustomer(customerIdInt);
-        return "The customer with ID " + customerIdInt + " was deleted.";
     }
 
     @MutationMapping(name = "updateCustomer")

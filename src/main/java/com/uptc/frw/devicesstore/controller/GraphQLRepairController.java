@@ -58,12 +58,16 @@ public class GraphQLRepairController {
 
     @MutationMapping(name = "deleteRepairId")
     public String deleteRepairId(@Argument(name = "repairId") String repairId) {
-        if (repairId == null||repairId.isBlank()) {
-            return "Repair ID is required.";
+        try {
+            if (repairId == null||repairId.isBlank()) {
+                return "Repair ID is required.";
+            }
+            int repairIdInt = Integer.parseInt(repairId);
+            repairService.deleteRepair(repairIdInt);
+            return "Repair ID with ID " + repairIdInt + " was deleted";
+        }catch (Exception e) {
+            return "Error while deleting component";
         }
-        int repairIdInt = Integer.parseInt(repairId);
-        repairService.deleteRepair(repairIdInt);
-        return "Repair ID with ID " + repairIdInt + " was deleted";
     }
 
     @MutationMapping(name = "updateRepair")
